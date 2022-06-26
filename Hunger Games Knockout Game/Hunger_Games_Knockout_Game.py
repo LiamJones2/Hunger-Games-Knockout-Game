@@ -1,24 +1,21 @@
+
 #necessary imports
 from os import path
-
 import time
-
 import os
-
 import sys
-
 import random
-
 
 
 #sets time to wait and follows time.sleep
 timeToWait = 1
 
-amountOfCharacters = 0
+
 
 #clears the console
 clearConsole = lambda: print('\n' * 150)
 
+#checks to see if the path exists for the statsfile
 file_exists = os.path.exists('statsfile.txt')
 
 clearConsole()
@@ -40,6 +37,7 @@ else:
 with open('character stats.txt','w+') as f:
         pass
 
+#not yet added
 def getStartingCoins():
     with open('statsfile.txt','r') as f:
         content = f.readlines()
@@ -50,7 +48,7 @@ def getStartingCoins():
         print(coinsTotal)
 
 
-
+#Welcomes the user to game
 def welcomeToGame():
     print("Welcome to the Hunger Knockout Game")
     time.sleep(timeToWait)
@@ -124,7 +122,7 @@ def startNormalGame():
                 
         countOfCharacters += 1
 
-
+#creates characters using a random number which decides whether the character is a caveman to being in the british empire
 def creatingCharacters():
     cultureOfCharacter = random.randint(1,6)
     if cultureOfCharacter == 1:
@@ -146,31 +144,37 @@ def creatingCharacters():
         character = createBritish() 
         return character
 
+#if called then it puts two names together to make a name for a caveman and returns it
 def createCaveman():
     firstPartOfCavemanNameList = ['Tso','Stud','Od','Fed','U','Dra','Fey','Iz','Daa','Gho','Og','Cus','Dre','Dro','Dra']
     secondPartOfCavemanNameList = ['kos','col','rall','g','g','ia','uh','oe','lab','no','ic','ur','e','rua','ve']
     return firstPartOfCavemanNameList[random.randint(0,len(firstPartOfCavemanNameList)-1)] + secondPartOfCavemanNameList[random.randint(0,len(firstPartOfCavemanNameList)-1)] + " the caveman"
 
+#if called then it picks a name for a Egyptian and returns it
 def createEgyptian():
     EgyptianNameList = ['Satemi','Jabari','Kaa','Hanif','Neith','Tefnut','Edfu','Pesahi','Rekh-mara','Ubaid','Khet-ui','Ra-to','Sensaos','Pthah-se','Akil','Huni','Uta-hor',
                         'Ra-pioses','Ra-tmeto','Amenheratf','Mehi','Bubastis','Nub-na','Sa-khons','Echidna']
     return EgyptianNameList[random.randint(0,len(EgyptianNameList)-1)] + " the Egyptian"
 
+#if called then it puts two names together to make a name for a Spartan and returns it
 def createSpartan():
     firstPartOfSpartanNameList = ['Valentinos','Aggelos','Aris','Sergios','Marinos','Epameinondas','Neofytos','Andreas','Andrianos','Emmanouil','Cybele','Eva','Melina','Yeorgia','Ifigenia']
     secondPartOfSpartanNameList = [' Vlahotis',' Barakos',' Zerveas',' Mellotis',' Georgotis',' Apostolas',' Pagonallis',' Calloulis',' Maras',' Stathoulis',' Kaneli',' Kallouli',' Zorbide',' Dimou',' Boosalidi']
     return firstPartOfSpartanNameList[random.randint(0,len(firstPartOfSpartanNameList)-1)] + secondPartOfSpartanNameList[random.randint(0,len(firstPartOfSpartanNameList)-1)] + " the Spartan"
 
+#if called then it puts two names together to make a name for a Samurai and returns it
 def createSamurai():
     firstPartOfSamuraiNameList = ['Shigeru','Taiho','Hisame','Hayato','Kikai','Hayato','Hatori','Sota','Hikari','Daichi','Kossori','Ketsueki','Hideki','Raion','Takeo']
     secondPartOfSamuraiNameList = [' Sairentojetto',' Honzo',' Fukuro',' Burakkuraitoningu',' Aisuhanma',' Faiyajetto',' Kuroitanken',' Nosuri',' Shizukanaiki',' Mayonaka',' Sandahaundo',' Bakuhatsu',' Faiamonsuta',' Sandajetto',' Sairentobomu']
     return firstPartOfSamuraiNameList[random.randint(0,len(firstPartOfSamuraiNameList)-1)] + secondPartOfSamuraiNameList[random.randint(0,len(firstPartOfSamuraiNameList)-1)] + " the Samurai"
 
+#if called then it puts two names together to make a name for a Roman and returns it
 def createRoman():
     firstPartOfRomanNameList = ['Alaricus','Horatio','Ferox','Callias','Flavian','Hersilia','Nigellus','Gemini','Idetta','Severus','Meleager','Ursinus','Herodotus','Cronus','Iphigenia']
     secondPartOfRomanNameList = [' Balbus',' Publicola',' Augur',' Laevinus',' Mucanius',' Hispaniensis',' Acidinus',' Barbatus',' Orca',' Cunctator',' Messala',' Arquetius',' Niger',' Sergianus',' Atticus']
     return firstPartOfRomanNameList[random.randint(0,len(firstPartOfRomanNameList)-1)] + secondPartOfRomanNameList[random.randint(0,len(firstPartOfRomanNameList)-1)] + " the Roman"
 
+#if called then it puts two names together to make a name for a solder in the British Empire and returns it
 def createBritish():
     firstPartOfBritishNameList = ['Clive','Fern','Marley','Cedrica','Candace','Frideswide','Haiden','Eardwulf','Erline','Gleda','Wynnstan','Chaney','Braeden','Melric','Allura']
     secondPartOfBritishNameList = [' Beverlye',' Harlowe',' Kimberlye',' Hayleye',' Wolfee',' Wright',' Pressleye',' Airaldii',' Stonee',' Hayes',' Wintere',' Wellse',' Easome',' Turnbulle',' Harrisone']
@@ -184,6 +188,7 @@ def createBritish():
 #british
 
 
+#creates the stats for each character
 def createCharacterStats():
     characterStats = ['0','0','0','0']
     #strength stat
@@ -196,38 +201,43 @@ def createCharacterStats():
     characterStats[3] = str(random.randint(1,20))+' '
     return characterStats
 
-
+#gets the characters name from the character stats file where the names were put
 def getCharacterName(numberCharacter):
     with open('character stats.txt','r') as gettingCharacterName:
         content = gettingCharacterName.readlines()
         characterName = content[numberCharacter]
         return characterName
 
-
+#gets the characters strength from the character stats file where the stats were put
 def getCharacterStrength(numberStrength):
     with open('character stats.txt','r') as gettingCharacterStrength:
         content = gettingCharacterStrength.readlines()
         characterStrength = content[numberStrength]
         return int(characterStrength)
 
+#gets the characters attack from the character stats file where the stats were put
 def getCharacterAttack(numberAttack):
     with open('character stats.txt','r') as gettingCharacterAttack:
         content = gettingCharacterAttack.readlines()
         characterAttack = content[numberAttack]
         return int(characterAttack)
 
+#gets the characters vitality(health) from the character stats file where the stats were put
 def getCharacterVitality(numberVitality):
     with open('character stats.txt','r') as gettingCharacterVitality:
         content = gettingCharacterVitality.readlines()
         characterVitality = content[numberVitality]
         return int(characterVitality)
 
+#gets the characters speed from the character stats file where the stats were put
 def getCharacterSpeed(numberSpeed):
     with open('character stats.txt','r') as gettingCharacterSpeed:
         content = gettingCharacterSpeed.readlines()
         characterSpeed = content[numberSpeed]
         return int(characterSpeed)
 
+
+#introduces the two participants in the round and displays their stats
 def fightSetup(participantOneName,participantOneStrength,participantOneAttack,participantOneVitality,participantOneSpeed,participantTwoName,participantTwoStrength,participantTwoAttack,participantTwoVitality,participantTwoSpeed, idOne,idTwo,round):
     clearConsole()
     print(round)
@@ -257,7 +267,12 @@ def fightSetup(participantOneName,participantOneStrength,participantOneAttack,pa
     winner = startFight(participantOneName,int(participantOneStrength),int(participantOneAttack),int(participantOneVitality),int(participantOneSpeed),participantTwoName,int(participantTwoStrength),int(participantTwoAttack),int(participantTwoVitality),int(participantTwoSpeed),idOne,idTwo)
     return winner
 
-
+'''
+Starts the fight and depending on whose speed is higher determines who attacks first. 
+The participants attack will use the function hotOrNotCalled and will determine whether a hit occurs or not. If not it prints 'Miss'.
+The participants strength will use the function howMuchDamage and will determine how much damage will occur to the opposing participant.
+The winner will have their id info(used to call from the character stats for each participant) returned.
+'''
 def startFight(participantOneName,participantOneStrength,participantOneAttack,participantOneHealth,participantOneSpeed,participantTwoName,participantTwoStrength,participantTwoAttack,participantTwoHealth,participantTwoSpeed,idOne,idTwo):
     print("The fight has begun")
     with open('character stats.txt','r') as returningWinner:
@@ -330,16 +345,16 @@ def startFight(participantOneName,participantOneStrength,participantOneAttack,pa
     else:
          return idOne
 
-
-def hitOrNotCalled(participantAttack,participantStrength):
-    hit = 50 + (participantAttack*2.5)
+#Used to determine whether a hit will happen or not
+def hitOrNotCalled(participantAttack):
+    hit = 50 + (participantAttack*2)
     hitChance = random.randint(1,100)
     if hitChance > hit:
         return "noHit"
     else:
         return "Hit"
 
-
+#Used to determine how much damage will happen
 def howMuchDamage(participantStrength):
     damageChanceHigh = participantStrength + 10
     if damageChanceHigh > 20:
@@ -350,6 +365,7 @@ def howMuchDamage(participantStrength):
     damageDealt = random.randint(damageChanceLow,damageChanceHigh)
     return damageDealt
 
+#not added
 def bet():
     if (coins > 0):
         pass
@@ -436,6 +452,7 @@ winnerOfFinal = fightSetup(getCharacterName(winnerOfFirstSemiFinal[0]),getCharac
                                        ,winnerOfFirstSemiFinal,winnerOfSecondSemiFinal,"THE FINAL!")
 
 
+#The grand champion will be stored in the stats file under winners and could participate in an ultimate hunger games between all champions if the feature gets added
 with open('character stats.txt','r') as returningWinner:
     content = returningWinner.readlines()
     name = content[winnerOfFinal[0]]
@@ -476,4 +493,4 @@ with open('character stats.txt','r') as returningWinner:
             f.writelines(lines)
 
 
-
+#end
